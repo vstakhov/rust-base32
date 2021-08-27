@@ -134,8 +134,25 @@ pub fn encode_alphabet_slice<T: AsRef<[u8]>>(
     o
 }
 
+///Encode base32 using the specified [Alphabet].
+///Returns a `String`.
+///
+///# Example
+///
+///```rust
+///extern crate base32;
+///
+///fn main() {
+///    let encoded = base32::encode_alphabet(
+///        "hello",
+///        &base32::alphabet::RFC,
+///    );
+///    println!("{}", encoded);
+///    // Prints 'NBSWY3DP'
+///}
+///```
 #[cfg(any(feature = "alloc", feature = "std", test))]
-pub fn encode_with_alphabet<T: AsRef<[u8]>>(alphabet: &Alphabet, input: T) -> String {
+pub fn encode_alphabet<T: AsRef<[u8]>>(alphabet: &Alphabet, input: T) -> String {
     let encoded_size = encoded_len(input.as_ref().len())
         .expect("usize overflow when calculating buffer size");
     let mut buf = vec![0; encoded_size];
@@ -143,9 +160,23 @@ pub fn encode_with_alphabet<T: AsRef<[u8]>>(alphabet: &Alphabet, input: T) -> St
     String::from_utf8(buf[0..enc_len].to_owned()).expect("Invalid UTF8")
 }
 
+///Encode base32 using the default alphabet
+///Returns a `String` result
+///
+///# Example
+///
+///```rust
+///extern crate base32;
+///
+///fn main() {
+///    let encoded = base32::encode("hello");
+///    println!("{}", encoded);
+///    // Prints 'em3ags7p'
+///}
+///```
 #[cfg(any(feature = "alloc", feature = "std", test))]
 pub fn encode<T: AsRef<[u8]>>(input: T) -> String {
-    encode_with_alphabet(&ZBASE32, input)
+    encode_alphabet(&ZBASE32, input)
 }
 
 #[cfg(test)]
@@ -210,53 +241,53 @@ mod tests {
     fn simple_encode_rfc() {
         assert_eq!(
             "ORSXG5BRGIZQ",
-            encode_with_alphabet(&RFC, "test123"),
+            encode_alphabet(&RFC, "test123"),
         );
         assert_eq!(
             "NBSWY3DP",
-            encode_with_alphabet(&RFC, "hello"),
+            encode_alphabet(&RFC, "hello"),
         );
     }
     #[test]
     fn empty_encode_rfc() {
         assert_eq!(
             "",
-            encode_with_alphabet(&RFC, ""),
+            encode_alphabet(&RFC, ""),
         );
     }
     #[test]
     fn series_encode_rfc() {
         assert_eq!(
             "ME",
-            encode_with_alphabet(&RFC, "a"),
+            encode_alphabet(&RFC, "a"),
         );
         assert_eq!(
             "MFQQ",
-            encode_with_alphabet(&RFC, "aa"),
+            encode_alphabet(&RFC, "aa"),
         );
         assert_eq!(
             "MFQWC",
-            encode_with_alphabet(&RFC, "aaa"),
+            encode_alphabet(&RFC, "aaa"),
         );
         assert_eq!(
             "MFQWCYI",
-            encode_with_alphabet(&RFC, "aaaa"),
+            encode_alphabet(&RFC, "aaaa"),
         );
         assert_eq!(
             "MFQWCYLB",
-            encode_with_alphabet(&RFC, "aaaaa"),
+            encode_alphabet(&RFC, "aaaaa"),
         );
         assert_eq!(
             "MFQWCYLBME",
-            encode_with_alphabet(&RFC, "aaaaaa"),
+            encode_alphabet(&RFC, "aaaaaa"),
         );
         assert_eq!(
             "MFQWCYLBMFQQ",
-            encode_with_alphabet(&RFC, "aaaaaaa"),
+            encode_alphabet(&RFC, "aaaaaaa"),
         );
         assert_eq!(
             "MFQWCYLBMFQWC",
-            encode_with_alphabet(&RFC, "aaaaaaaa"),
+            encode_alphabet(&RFC, "aaaaaaaa"),
         );
     }
 }

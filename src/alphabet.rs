@@ -13,6 +13,7 @@ pub enum EncodeOrder {
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Alphabet {
     pub(crate) encode_symbols: [u8; ALPHABET_SIZE],
+    pub(crate) decode_bytes: [u8; u8::MAX as usize],
     pub(crate) encode_order : EncodeOrder,
 }
 
@@ -22,13 +23,16 @@ impl Alphabet {
     const fn from_str_unsafe(alphabet: &str, encode_order: EncodeOrder) -> Self {
         let mut symbols = [0_u8; ALPHABET_SIZE];
         let source_bytes = alphabet.as_bytes();
+        let mut decode_bytes = [0xff_u8; u8::MAX as usize];
 
         let mut index = 0;
         while index < ALPHABET_SIZE {
-            symbols[index] = source_bytes[index];
+            let sym = source_bytes[index];
+            symbols[index] = sym;
+            decode_bytes[sym as usize] = index as u8;
             index = index + 1;
         }
-        Alphabet { encode_symbols: symbols, encode_order }
+        Alphabet { encode_symbols: symbols, decode_bytes, encode_order }
     }
 
     /// Checks input for printability and duplicates
