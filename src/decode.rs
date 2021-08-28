@@ -218,7 +218,7 @@ mod tests {
     #[test]
     fn simple_encode_decode_rfc() {
         assert_eq!("test123".as_bytes(),
-                   decode_alphabet(encode_alphabet(&RFC, "test123"),
+                   decode_alphabet(encode_alphabet("test123", &RFC),
                                    &RFC).expect("undecoded"));
     }
 }
