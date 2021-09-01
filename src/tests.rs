@@ -69,7 +69,7 @@ fn encode_decode_random_rfc_small() {
 
 #[test]
 fn encode_decode_random_bleach_small() {
-    let alphabet = BLEACH32;
+    let alphabet = BECH32;
     for input_len in 0..40 {
         roundtrip_random(&alphabet, input_len, 10);
     }

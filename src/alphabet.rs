@@ -103,8 +103,8 @@ pub const ZBASE32: Alphabet = Alphabet::from_str_unsafe(
     EncodeOrder::OrderInversed,
 );
 
-/// Bleach32 alphabet used for cryptocurrencies
-pub const BLEACH32: Alphabet = Alphabet::from_str_unsafe(
+/// Bech32 alphabet used for bitcoin
+pub const BECH32: Alphabet = Alphabet::from_str_unsafe(
    "qpzry9x8gf2tvdw0s3jn54khce6mua7l",
    EncodeOrder::OrderNormal,
 );
