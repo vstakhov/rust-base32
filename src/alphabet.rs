@@ -36,7 +36,7 @@ impl Alphabet {
     }
 
     /// Checks input for printability and duplicates
-    const fn from_str_order(alphabet: &str, encode_order: EncodeOrder) -> Result<Self, ParseAlphabetError> {
+    pub const fn from_str_order(alphabet: &str, encode_order: EncodeOrder) -> Result<Self, ParseAlphabetError> {
         const FIRST_PRINTABLE: u8 = 32;
         const LAST_PRINTABLE: u8 = 126;
         const DUPS_SIZE: usize = (LAST_PRINTABLE - FIRST_PRINTABLE) as usize;
@@ -67,7 +67,7 @@ impl Alphabet {
         Ok(Self::from_str_unsafe(alphabet, encode_order))
     }
 
-    const fn from_str(alphabet: &str) -> Result<Self, ParseAlphabetError> {
+    pub const fn from_str(alphabet: &str) -> Result<Self, ParseAlphabetError> {
         Self::from_str_order(alphabet, EncodeOrder::OrderNormal)
     }
 }
