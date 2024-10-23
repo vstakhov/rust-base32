@@ -99,7 +99,7 @@ pub fn decode_alphabet<T: AsRef<[u8]>>(
 ///fn main() {
 ///    let mut buffer = Vec::<u8>::new();
 ///    // with the default engine
-///    base64::decode_alphabet_vec(
+///    base32::decode_alphabet_vec(
 ///        "em3ags7p",
 ///        &mut buffer,
 ///        &base32::alphabet::ZBASE32
