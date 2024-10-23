@@ -1,5 +1,5 @@
 [package]
-name = "base32"
+name = "zbase32"
 version = "0.1.0"
 edition = "2021"
 authors = ["Vsevolod Stakhov <vsevolod@rspamd.com>"]
