@@ -1,8 +1,8 @@
+//! Base32 encoding routines
 use crate::alphabet::{Alphabet, ZBASE32, EncodeOrder};
 
 #[cfg(any(feature = "alloc", feature = "std", test))]
 use std::{string::String, vec};
-
 
 ///Returns encoded length for given input length
 pub fn encoded_len(bytes_len: usize) -> Option<usize> {

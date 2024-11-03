@@ -1,3 +1,4 @@
+//! Base32 decoding routines
 use crate::alphabet::{Alphabet, ZBASE32, EncodeOrder};
 
 #[cfg(any(feature = "alloc", feature = "std", test))]
