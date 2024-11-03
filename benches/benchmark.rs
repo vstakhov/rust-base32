@@ -1,12 +1,11 @@
-extern crate criterion;
-extern crate rand;
-extern crate base32;
+
+use rspamd_base32;
 
 use criterion::{black_box, criterion_group, criterion_main,
                 BenchmarkId, Bencher, Criterion, Throughput};
-use base32::{encode, decode, encode_alphabet_slice};
-use base32::alphabet::ZBASE32;
-use base32::encode::encoded_len;
+use rspamd_base32::{encode, decode, encode_alphabet_slice};
+use rspamd_base32::alphabet::ZBASE32;
+use rspamd_base32::encode::encoded_len;
 use rand::prelude::*;
 
 fn fill_buf(v: &mut Vec<u8>) {

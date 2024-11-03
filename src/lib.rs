@@ -22,7 +22,7 @@
 //! ## Example
 //!
 //! ~~~rust
-//!use base32::{encode, decode};
+//!use rspamd_base32::{encode, decode};
 //!
 //!fn main() {
 //!  let a = b"hello world";

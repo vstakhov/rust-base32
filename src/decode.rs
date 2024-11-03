@@ -46,10 +46,10 @@ impl error::Error for DecodeError {
 ///# Example
 ///
 ///```rust
-///extern crate base32;
+///extern crate rspamd_base32;
 ///
 ///fn main() {
-///    let bytes = base32::decode("em3ags7p").unwrap();
+///    let bytes = rspamd_base32::decode("em3ags7p").unwrap();
 ///    println!("{:?}", bytes);
 ///    // Prints 'hello'
 ///}
@@ -65,12 +65,12 @@ pub fn decode<T: AsRef<[u8]>>(input: T) -> Result<Vec<u8>, DecodeError> {
 ///# Example
 ///
 ///```rust
-///extern crate base32;
+///extern crate rspamd_base32;
 ///
 ///fn main() {
-///    let bytes = base32::decode_alphabet(
+///    let bytes = rspamd_base32::decode_alphabet(
 ///        "NBSWY3DP",
-///        &base32::alphabet::RFC,
+///        &rspamd_base32::alphabet::RFC,
 ///    ).unwrap();
 ///    println!("{:?}", bytes);
 ///    // Prints 'hello'
@@ -94,16 +94,16 @@ pub fn decode_alphabet<T: AsRef<[u8]>>(
 ///# Example
 ///
 ///```rust
-///extern crate base32;
+///extern crate rspamd_base32;
 ///
 ///
 ///fn main() {
 ///    let mut buffer = Vec::<u8>::new();
 ///    // with the default engine
-///    base32::decode_alphabet_vec(
+///    rspamd_base32::decode_alphabet_vec(
 ///        "em3ags7p",
 ///        &mut buffer,
-///        &base32::alphabet::ZBASE32
+///        &rspamd_base32::alphabet::ZBASE32
 ///    ).unwrap();
 ///    println!("{:?}", buffer);
 ///}

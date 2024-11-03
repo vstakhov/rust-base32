@@ -143,12 +143,12 @@ pub fn encode_alphabet_slice<T: AsRef<[u8]>>(
 ///# Example
 ///
 ///```rust
-///extern crate base32;
+///extern crate rspamd_base32;
 ///
 ///fn main() {
-///    let encoded = base32::encode_alphabet(
+///    let encoded = rspamd_base32::encode_alphabet(
 ///        "hello",
-///        &base32::alphabet::RFC,
+///        &rspamd_base32::alphabet::RFC,
 ///    );
 ///    println!("{}", encoded);
 ///    // Prints 'NBSWY3DP'
@@ -169,10 +169,10 @@ pub fn encode_alphabet<T: AsRef<[u8]>>(input: T, alphabet: &Alphabet) -> String 
 ///# Example
 ///
 ///```rust
-///extern crate base32;
+///extern crate rspamd_base32;
 ///
 ///fn main() {
-///    let encoded = base32::encode("hello");
+///    let encoded = rspamd_base32::encode("hello");
 ///    println!("{}", encoded);
 ///    // Prints 'em3ags7p'
 ///}
